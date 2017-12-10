@@ -1,22 +1,23 @@
 #!/usr/bin/env node
 const clipboardy = require('clipboardy');
 const fs = require('fs');
+const path = require('path');
 const chalk = require('chalk');
 const program = require('commander');
 const inquirer = require('inquirer');
 const nodeEval = require('node-eval');
 const packageJson = require('../../package');
-const generateType = require('../../lib/generateFromTypesFromJson');
+const generateType = require('../../lib/generateFlowTypesFromJson');
 
 program
   .version(packageJson.version)
-  .option('-c, --content', 'The content to generate the type from.')
-  .option('-f, --file', 'The file path to load content from.')
+  .option('-c, --clipboard', 'Use the clipboard to generate the type. This is the default mode.')
+  .option('-f, --file <path>', 'The file path to load content from.')
   .option(
     '-r, --read-only',
     'Outputs type as a read only type. This setting is recommended for API responses etc.'
   )
-  .option('-n, --name', 'The desired name for the type.')
+  .option('-n, --name <name>', 'The desired name for the type.')
   .option('-i, --interactive', 'Asks for config interactively.')
   .parse(process.argv);
 
@@ -25,13 +26,9 @@ async function processContent(content) {
   let parsedContent;
 
   try {
-    parsedContent = JSON.parse(content);
+    parsedContent = nodeEval(`module.exports = { data: ${content} }`).data;
   } catch (e) {
-    try {
-      parsedContent = nodeEval(`module.exports = { data: ${content} }`).data;
-    } catch (e) {
-      // Silent
-    }
+    // Silent
   }
 
   if (!parsedContent) {
@@ -43,7 +40,7 @@ async function processContent(content) {
     process.exit();
   }
 
-  let name = program.name;
+  let name = program.name || 'Type';
   let readOnly = !!program.readOnly;
 
   if (program.interactive) {
@@ -80,7 +77,11 @@ async function processContent(content) {
 (async function() {
   if (program.file) {
     console.log(chalk.yellow('Using provided file.'));
-    const content = fs.readFileSync(program.file, 'utf8');
+    const content = fs.readFileSync(
+      path.join(process.cwd(), program.file),
+      'utf8'
+    );
+
     await processContent(content);
   } else if (program.content) {
     console.log(chalk.yellow('Using provided content.'));

@@ -32,6 +32,15 @@ exports[`generateFlowTypesFromJson Realistic examples API responses api response
 "
 `;
 
+exports[`generateFlowTypesFromJson Realistic examples api response should yield a sensible Flow type 1`] = `
+"type UserAPIResponse = $ReadOnlyArray<{|
+  +name: string,
+  +age: ?number,
+  +email: ?string
+|}>;
+"
+`;
+
 exports[`generateFlowTypesFromJson should find lists of objects, remove duplicates, unify all objects to a single object, and add maybe types to keys not present in all objects 1`] = `
 "type TestType = {|
   +testList: $ReadOnlyArray<{|

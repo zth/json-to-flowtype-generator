@@ -1,4 +1,4 @@
-const generateFlowTypesFromJson = require('../generateFromTypesFromJson');
+const generateFlowTypesFromJson = require('../generateFlowTypesFromJson');
 
 describe('generateFlowTypesFromJson', () => {
   it('should print JSON to a valid Flow type', () => {
@@ -152,6 +152,30 @@ describe('generateFlowTypesFromJson', () => {
           )
         ).toMatchSnapshot();
       });
+    });
+    test('api response should yield a sensible Flow type', () => {
+      expect(
+        generateFlowTypesFromJson(
+          [
+            {
+              name: 'Test',
+              age: 123
+            },
+            {
+              name: 'Test',
+              age: null
+            },
+            {
+              name: 'Test',
+              email: 'email@email.com'
+            }
+          ],
+          {
+            name: 'UserAPIResponse',
+            readOnly: true
+          }
+        )
+      ).toMatchSnapshot();
     });
   });
 });

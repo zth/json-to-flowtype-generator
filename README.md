@@ -13,7 +13,7 @@ It provides easy interaction by defaulting to using the current clipboard conten
 
 It can also operate directly on files, as in the example below:
 
-![Example usage](https://github.com/zth/json-to-flowtype-generator/example.gif "Example usage")
+![Example usage](https://raw.githubusercontent.com/zth/json-to-flowtype-generator/master/example.gif "Example usage")
 
 The tool does some semi-intelligent merging of objects etc in lists in order to identify both `maybe`-keys and keys that can have multiple types. 
 Check out the GIF above and compare the objects in `friends` of the raw data to `friends` in the generated type. Notice how the tool has marked keys 

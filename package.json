@@ -1,6 +1,15 @@
 {
   "name": "json-to-flowtype-generator",
   "author": "Gabriel Nordeborn",
+  "repository": "https://github.com/zth/json-to-flowtype-generator",
+  "keywords": [
+    "json",
+    "flow",
+    "flowtype",
+    "js",
+    "generator",
+    "types"
+  ],
   "files": [
     "package.json",
     "README.md",

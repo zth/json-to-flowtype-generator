@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generateFlowTypesFromJson Realistic examples API responses api response should yield a sensible Flow type 1`] = `
+"type UserAPIResponse = {|
+  +data: {|
+    +notifications: {|
+      +count: number,
+      +edges: $ReadOnlyArray<{|
+        +cursor: string,
+        +node: {|
+          +id: number,
+          +message: ?string
+        |}
+      |}>
+    |},
+    +user: {|
+      +id: number,
+      +firstName: string,
+      +lastName: string,
+      +email: string,
+      +friends: $ReadOnlyArray<{|
+        +id: number,
+        +firstName: string,
+        +lastName: string,
+        +email: ?string,
+        +isOnline: ?boolean,
+        +lastMessaged: ?number
+      |}>
+    |}
+  |}
+|};
+"
+`;
+
+exports[`generateFlowTypesFromJson should find lists of objects, remove duplicates, unify all objects to a single object, and add maybe types to keys not present in all objects 1`] = `
+"type TestType = {|
+  +testList: $ReadOnlyArray<{|
+    +test: string,
+    +maybeProp: ?number,
+    +anotherMaybeProp: ?string,
+    +maybeObj: ?{|
+      +test: string
+    |},
+    +nestedList: ?$ReadOnlyArray<{|
+      +prop: string,
+      +maybeProp: ?number
+    |}>
+  |}>
+|};
+"
+`;
+
+exports[`generateFlowTypesFromJson should handle nested arrays that are sometimes empty 1`] = `
+"type TestType = {|
+  +testList: $ReadOnlyArray<{|
+    +test: string,
+    +nestedList: $ReadOnlyArray<{|
+      +prop: string,
+      +maybeProp: ?number
+    |}>,
+    +maybeProp: ?number,
+    +anotherMaybeProp: ?string,
+    +maybeObj: ?{|
+      +test: string
+    |}
+  |}>
+|};
+"
+`;
+
+exports[`generateFlowTypesFromJson should print JSON to a valid Flow type 1`] = `
+"type TestType = {|
+  +testString: string,
+  +testBool: boolean,
+  +testNum: number,
+  +testNull: any, // FIXME: Type could not be determined
+  +testObj: {|
+    +str: string,
+    +bool: boolean,
+    +num: number,
+    +not: any // FIXME: Type could not be determined
+  |},
+  +testObjList: $ReadOnlyArray<{|
+    +str: string,
+    +bool: boolean,
+    +num: number,
+    +not: ?any // FIXME: Type could not be determined
+  |}>,
+  +testPrimitiveList: $ReadOnlyArray<number | string>
+|};
+"
+`;

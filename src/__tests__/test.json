@@ -1,0 +1,17 @@
+{
+  "data": {
+    "friends": [
+      {
+        "id": 123,
+        "name": "Hejsan"
+      },
+      {
+        "id": 123,
+        "name": "Hejsan"
+      },
+      {
+        "id": 123
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "json-to-flowtype-generator",
+  "author": "Gabriel Nordeborn",
+  "files": [
+    "package.json",
+    "README.md",
+    "lib",
+    "yarn.lock"
+  ],
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "bin": {
+    "json-to-flow": "./lib/bin/json-to-flow.js"
+  },
+  "scripts": {
+    "build": "rm -rf lib && babel src/ -d lib/",
+    "flow": "flow",
+    "test": "jest src",
+    "test:watch": "yarn test --watch"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.61.0",
+    "flow-typed": "^2.2.3",
+    "jest": "^21.2.1"
+  },
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "clipboardy": "^1.2.2",
+    "commander": "^2.12.2",
+    "deep-equal": "^1.0.1",
+    "inquirer": "^4.0.1",
+    "node-eval": "^2.0.0",
+    "prettier": "^1.9.1"
+  }
+}

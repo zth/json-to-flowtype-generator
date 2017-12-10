@@ -1,0 +1,12 @@
+// @flow
+export type Config = {
+  name: string,
+  readOnly?: boolean
+};
+
+export type FlowPrimitiveType = 'string' | 'number' | 'boolean' | 'null';
+export type FlowType = Array<FlowType> | FlowPrimitiveType | TypedObj;
+
+export type TypedObj = {
+  [key: string]: FlowType
+};

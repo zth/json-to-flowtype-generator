@@ -1,0 +1,7 @@
+{
+  "ignore": ["**/__tests__"],
+  "plugins": ["transform-async-to-generator"],
+  "presets": [
+    "flow"
+  ]
+}

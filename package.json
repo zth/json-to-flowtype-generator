@@ -2,6 +2,9 @@
   "name": "json-to-flowtype-generator",
   "author": "Gabriel Nordeborn",
   "repository": "https://github.com/zth/json-to-flowtype-generator",
+  "version": "0.9.0",
+  "main": "lib/index.js",
+  "license": "MIT",
   "keywords": [
     "json",
     "flow",
@@ -16,14 +19,12 @@
     "lib",
     "yarn.lock"
   ],
-  "version": "1.0.0",
-  "main": "lib/index.js",
-  "license": "MIT",
   "bin": {
     "json-to-flow": "./lib/bin/json-to-flow.js"
   },
   "scripts": {
     "build": "rm -rf lib && babel src/ -d lib/",
+    "prepublish": "yarn build",
     "flow": "flow",
     "test": "jest src",
     "test:watch": "yarn test --watch"

@@ -2,6 +2,7 @@
   "name": "json-to-flowtype-generator",
   "author": "Gabriel Nordeborn",
   "repository": "https://github.com/zth/json-to-flowtype-generator",
+  "description": "Generate Flow types from JSON or static JS objects/lists.",
   "version": "0.9.0",
   "main": "lib/index.js",
   "license": "MIT",
@@ -16,6 +17,7 @@
   "files": [
     "package.json",
     "README.md",
+    "LICENSE",
     "lib",
     "yarn.lock"
   ],

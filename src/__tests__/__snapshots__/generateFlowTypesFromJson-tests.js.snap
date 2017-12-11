@@ -41,6 +41,125 @@ exports[`generateFlowTypesFromJson Realistic examples api response should yield 
 "
 `;
 
+exports[`generateFlowTypesFromJson Realistic examples should handle a complex response 1`] = `
+"type Type = {|
+  +list: $ReadOnlyArray<{|
+    +id: number,
+    +title: string,
+    +contentHTML: string,
+    +state: string,
+    +noOfInvitedReaders: number,
+    +noOfSeen: number,
+    +author: {|
+      +id: number,
+      +name: string,
+      +avatar: ?string,
+      +sortBy: string
+    |},
+    +context: {|
+      +id: number,
+      +name: string,
+      +avatar: any, // FIXME: Type could not be determined
+      +sortBy: string
+    |},
+    +created: number,
+    +lastEdited: number,
+    +published: ?number,
+    +allowColleguesToEdit: boolean,
+    +allowComments: boolean,
+    +seen: boolean,
+    +visibleTo: $ReadOnlyArray<string>,
+    +comments: $ReadOnlyArray<any /* FIXME: Type could not be determined */>,
+    +positions: $ReadOnlyArray<any /* FIXME: Type could not be determined */>,
+    +ingressImage: ?{|
+      +path: string,
+      +id: number
+    |},
+    +images: $ReadOnlyArray<any /* FIXME: Type could not be determined */>,
+    +attachments: $ReadOnlyArray<any /* FIXME: Type could not be determined */>,
+    +connectedTags: $ReadOnlyArray<
+      any /* FIXME: Type could not be determined */
+    >,
+    +connectedCurriculums: $ReadOnlyArray<
+      any /* FIXME: Type could not be determined */
+    >,
+    +connectedLpps: $ReadOnlyArray<
+      any /* FIXME: Type could not be determined */
+    >,
+    +connectedPoints: $ReadOnlyArray<
+      any /* FIXME: Type could not be determined */
+    >,
+    +allowedToEdit: boolean,
+    +allowedToCopy: boolean,
+    +allowedToDelete: boolean,
+    +allowedCurriculumConnect: boolean,
+    +allowedToConnect: boolean,
+    +cursor: string
+  |}>,
+  +cursor: string,
+  +hasNext: boolean
+|};
+"
+`;
+
+exports[`generateFlowTypesFromJson Realistic examples should handle complex response 1`] = `
+"type Type = {|
+  +id: number,
+  +title: string,
+  +contentHTML: string,
+  +state: string,
+  +noOfInvitedReaders: number,
+  +noOfSeen: number,
+  +author: {|
+    +id: number,
+    +name: string,
+    +avatar: string,
+    +sortBy: string
+  |},
+  +context: {|
+    +id: number,
+    +name: string,
+    +avatar: any, // FIXME: Type could not be determined
+    +sortBy: string
+  |},
+  +created: number,
+  +lastEdited: number,
+  +published: number,
+  +allowColleguesToEdit: boolean,
+  +allowComments: boolean,
+  +seen: boolean,
+  +visibleTo: $ReadOnlyArray<string>,
+  +comments: $ReadOnlyArray<any /* FIXME: Type could not be determined */>,
+  +positions: $ReadOnlyArray<any /* FIXME: Type could not be determined */>,
+  +ingressImage: {|
+    +path: string,
+    +id: number
+  |},
+  +images: $ReadOnlyArray<{|
+    +path: string,
+    +thumbnailPath: string
+  |}>,
+  +attachments: $ReadOnlyArray<any /* FIXME: Type could not be determined */>,
+  +connectedTags: $ReadOnlyArray<any /* FIXME: Type could not be determined */>,
+  +connectedCurriculums: $ReadOnlyArray<
+    any /* FIXME: Type could not be determined */
+  >,
+  +connectedLpps: $ReadOnlyArray<any /* FIXME: Type could not be determined */>,
+  +connectedPoints: $ReadOnlyArray<{|
+    +id: number,
+    +body: string,
+    +type: string
+  |}>,
+  +allowedToEdit: boolean,
+  +allowedToCopy: boolean,
+  +allowedToDelete: boolean,
+  +allowedCurriculumConnect: boolean,
+  +allowedToConnect: boolean,
+  +cursor: string
+|};
+"
+`;
+
 exports[`generateFlowTypesFromJson should find lists of objects, remove duplicates, unify all objects to a single object, and add maybe types to keys not present in all objects 1`] = `
 "type TestType = {|
   +testList: $ReadOnlyArray<{|
@@ -63,10 +182,12 @@ exports[`generateFlowTypesFromJson should handle nested arrays that are sometime
 "type TestType = {|
   +testList: $ReadOnlyArray<{|
     +test: string,
-    +nestedList: $ReadOnlyArray<{|
-      +prop: string,
-      +maybeProp: ?number
-    |}>,
+    +nestedList:
+      | $ReadOnlyArray<any /* FIXME: Type could not be determined */>
+      | $ReadOnlyArray<{|
+          +prop: string,
+          +maybeProp: ?number
+        |}>,
     +maybeProp: ?number,
     +anotherMaybeProp: ?string,
     +maybeObj: ?{|

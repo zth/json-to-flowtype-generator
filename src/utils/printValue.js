@@ -54,6 +54,10 @@ function printValue(value: any, config: Config): string {
     const maybeKeys = getMaybeKeysInListOfObjects(dedupedList);
     const unifiedList = unifyItemsInList(dedupedList, config);
 
+    if (unifiedList.length === 0) {
+      unifiedList.push('any /* FIXME: Type could not be determined */');
+    }
+
     return `${config.readOnly ? '$ReadOnlyArray' : 'Array'}<${unifiedList
       .map(
         val =>

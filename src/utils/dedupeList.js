@@ -10,7 +10,13 @@ function dedupeList(list: Array<any>): Array<any> {
     }
   });
 
-  return dedupedList;
+  // Make sure empty arrays are properly marked up
+  return dedupedList.map(
+    item =>
+      Array.isArray(item) && item.length === 0
+        ? ['any /* FIXME: Type could not be determined */']
+        : item
+  );
 }
 
 module.exports = dedupeList;

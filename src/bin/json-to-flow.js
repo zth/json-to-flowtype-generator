@@ -11,7 +11,10 @@ const generateType = require('../../lib/generateFlowTypesFromJson');
 
 program
   .version(packageJson.version)
-  .option('-c, --clipboard', 'Use the clipboard to generate the type. This is the default mode.')
+  .option(
+    '-c, --clipboard',
+    'Use the clipboard to generate the type. This is the default mode.'
+  )
   .option('-f, --file <path>', 'The file path to load content from.')
   .option(
     '-r, --read-only',
@@ -40,7 +43,7 @@ async function processContent(content) {
     process.exit();
   }
 
-  let name = program.name || 'Type';
+  let name = typeof program.name === 'string' ? program.name : 'Type';
   let readOnly = !!program.readOnly;
 
   if (program.interactive) {
